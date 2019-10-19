@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import 'antd/dist/antd.css';
-import { Input, message, Button, Row, Col, Icon, Form } from 'antd';
+import React, { useState } from "react";
+import "antd/dist/antd.css";
+import { Input, message, Button, Row, Col, Icon, Form } from "antd";
 
-import TaskItems from './TaskItems';
+import TaskItems from "./TaskItems";
 
 class Task {
   constructor(inputTask) {
@@ -14,7 +14,7 @@ class Task {
 }
 
 const App = () => {
-  const [inputTask, setInputTask] = useState('');
+  const [inputTask, setInputTask] = useState("");
   const [taskItem, setTaskItem] = useState([]);
 
   const inputTaskHandler = e => {
@@ -24,30 +24,30 @@ const App = () => {
   const addTaskHandler = () => {
     const copyTaskItem = [...taskItem];
     if (!inputTask) {
-      message.error('Please input the valid value!');
+      message.error("Please input the valid value!");
       return;
     }
     const task = new Task(inputTask);
     copyTaskItem.push(task);
     setTaskItem(copyTaskItem);
-    setInputTask('');
+    setInputTask("");
   };
 
   const finishTaskHandler = key => {
     const updatedTaskItem = taskItem.map((task, index) => {
       if (index === key) {
         task.isFinish = !task.isFinish;
-        task.style = {textDecoration: 'line-through'};
+        task.style = { textDecoration: "line-through" };
       }
       return task;
     });
     setTaskItem(updatedTaskItem);
-  }
+  };
 
   const deleteTaskHandler = key => {
-    const undeletedTaskItem = taskItem.filter((task, index) => index !== key );
+    const undeletedTaskItem = taskItem.filter((task, index) => index !== key);
     setTaskItem(undeletedTaskItem);
-  }
+  };
 
   const enableEditTaskHandler = (key, e) => {
     const editedTaskItem = taskItem.map((task, index) => {
@@ -77,7 +77,8 @@ const App = () => {
         enableEditTaskHandler={enableEditTaskHandler}
         editTaskHandler={editTaskHandler}
         finishTaskHandler={finishTaskHandler}
-        deleteTaskHandler={deleteTaskHandler} />
+        deleteTaskHandler={deleteTaskHandler}
+      />
     );
   }
 
@@ -86,7 +87,7 @@ const App = () => {
       <Row>
         <Col span={8} />
         <Col span={8}>
-          <h1 style={{ textAlign: 'center' }}>Simple Todo List App</h1>
+          <h1 style={{ textAlign: "center" }}>Simple Todo List App</h1>
         </Col>
         <Col span={8} />
       </Row>
@@ -100,13 +101,17 @@ const App = () => {
                   value={inputTask}
                   defaultValue={inputTask}
                   allowClear
-                  placeholder='Task...'
+                  placeholder="Task..."
                   onChange={e => inputTaskHandler(e)}
                 />
               </Col>
               <Col span={9}>
                 <Row type="flex" justify="space-around">
-                  <Button type='primary' htmlType='submit' onClick={addTaskHandler}>
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    onClick={addTaskHandler}
+                  >
                     <Icon type="plus-circle" /> Add Task
                   </Button>
                 </Row>
